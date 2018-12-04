@@ -68,6 +68,8 @@ func main() {
 	s := grpc.NewServer()
 	pb.RegisterGreeterServer(s, &server{tempdata: data})
 
+	fmt.Println("Listening...")
+
 	// Register reflection service on gRPC server.
 	// reflection.Register(s)
 
