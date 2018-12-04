@@ -35,44 +35,30 @@ const (
 )
 
 // server is used to implement helloworld.GreeterServer.
-type server struct{}
-
-type tasks struct {
-	message string
+type server struct {
+	tempdata []*pb.Task
 }
 
 // SayHello implements helloworld.GreeterServer
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello " + in.Name + "!!"}, nil
-}
+//func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+//	return &pb.HelloReply{Message: "Hello " + in.Name + "!!"}, nil
+//}
 
-func (s *server) GetTasks(ctx context.Context, in *pb.TaskRequest) (*pb.TaskList, error) {
+//func (s *server) ListTasks(ctx context.Context, in *pb.TaskRequest) (*pb.TaskResponse, error) {
+func (s *server) ListTasks(ctx context.Context, in *pb.Empty) (*pb.TaskResponse, error) {
 
-	var listing []*pb.Task
+	fmt.Println("ListTasks:", s.tempdata)
 
-	t1 := &pb.Task{Message: "testing"}
-	t2 := &pb.Task{Message: "testing2"}
-
-	listing = append(listing, t1)
-	listing = append(listing, t2)
-
-	fmt.Println(listing)
-
-	return &pb.TaskList{Task: listing}, nil
-
-	//t := &[]pb.Task{}
-	//
-	//for i := 0; i < 5; i++ {
-	//	tasking := &pb.Task{Message: "Task"}
-	//	t := append(*t, *tasking)
-	//}
-	//
-	////t2 := *pb.Task{}
-	//
-	//return &pb.TaskList{Tasks: []*pb.Task{Message: t}}, nil
+	return &pb.TaskResponse{Tasks: s.tempdata}, nil
 }
 
 func main() {
+
+	data := []*pb.Task{
+		{Message: "testing1", Id: 1},
+		{Message: "testing2", Id: 2},
+		{Message: "testing3", Id: 3},
+	}
 
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
@@ -80,7 +66,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterGreeterServer(s, &server{})
+	pb.RegisterGreeterServer(s, &server{tempdata: data})
 
 	// Register reflection service on gRPC server.
 	// reflection.Register(s)
@@ -89,3 +75,24 @@ func main() {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
+
+//t0 := &pb.Task{Message: "testing1", Id: 1}
+//t1 := &pb.Task{Message: "testing2", Id: 2}
+//t2 := &pb.Task{Message: "testing3", Id: 3}
+//
+//fmt.Println(t2)
+//
+//data = append(data, t0)
+//data = append(data, t1)
+//data = append(data, t2)
+
+//t := &[]pb.Task{}
+//
+//for i := 0; i < 5; i++ {
+//	tasking := &pb.Task{Message: "Task"}
+//	t := append(*t, *tasking)
+//}
+//
+////t2 := *pb.Task{}
+//
+//return &pb.TaskList{Tasks: []*pb.Task{Message: t}}, nil

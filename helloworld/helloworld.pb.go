@@ -22,87 +22,84 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-// The request message containing the user's name.
-type HelloRequest struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+type Empty struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *HelloRequest) Reset()         { *m = HelloRequest{} }
-func (m *HelloRequest) String() string { return proto.CompactTextString(m) }
-func (*HelloRequest) ProtoMessage()    {}
-func (*HelloRequest) Descriptor() ([]byte, []int) {
+func (m *Empty) Reset()         { *m = Empty{} }
+func (m *Empty) String() string { return proto.CompactTextString(m) }
+func (*Empty) ProtoMessage()    {}
+func (*Empty) Descriptor() ([]byte, []int) {
 	return fileDescriptor_17b8c58d586b62f2, []int{0}
 }
 
-func (m *HelloRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HelloRequest.Unmarshal(m, b)
+func (m *Empty) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Empty.Unmarshal(m, b)
 }
-func (m *HelloRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HelloRequest.Marshal(b, m, deterministic)
+func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
 }
-func (m *HelloRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloRequest.Merge(m, src)
+func (m *Empty) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Empty.Merge(m, src)
 }
-func (m *HelloRequest) XXX_Size() int {
-	return xxx_messageInfo_HelloRequest.Size(m)
+func (m *Empty) XXX_Size() int {
+	return xxx_messageInfo_Empty.Size(m)
 }
-func (m *HelloRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_HelloRequest proto.InternalMessageInfo
-
-func (m *HelloRequest) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
+func (m *Empty) XXX_DiscardUnknown() {
+	xxx_messageInfo_Empty.DiscardUnknown(m)
 }
 
-// The response message containing the greetings
-type HelloReply struct {
-	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+var xxx_messageInfo_Empty proto.InternalMessageInfo
+
+type Task struct {
+	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Message              string   `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *HelloReply) Reset()         { *m = HelloReply{} }
-func (m *HelloReply) String() string { return proto.CompactTextString(m) }
-func (*HelloReply) ProtoMessage()    {}
-func (*HelloReply) Descriptor() ([]byte, []int) {
+func (m *Task) Reset()         { *m = Task{} }
+func (m *Task) String() string { return proto.CompactTextString(m) }
+func (*Task) ProtoMessage()    {}
+func (*Task) Descriptor() ([]byte, []int) {
 	return fileDescriptor_17b8c58d586b62f2, []int{1}
 }
 
-func (m *HelloReply) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HelloReply.Unmarshal(m, b)
+func (m *Task) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Task.Unmarshal(m, b)
 }
-func (m *HelloReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HelloReply.Marshal(b, m, deterministic)
+func (m *Task) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Task.Marshal(b, m, deterministic)
 }
-func (m *HelloReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloReply.Merge(m, src)
+func (m *Task) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Task.Merge(m, src)
 }
-func (m *HelloReply) XXX_Size() int {
-	return xxx_messageInfo_HelloReply.Size(m)
+func (m *Task) XXX_Size() int {
+	return xxx_messageInfo_Task.Size(m)
 }
-func (m *HelloReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloReply.DiscardUnknown(m)
+func (m *Task) XXX_DiscardUnknown() {
+	xxx_messageInfo_Task.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_HelloReply proto.InternalMessageInfo
+var xxx_messageInfo_Task proto.InternalMessageInfo
 
-func (m *HelloReply) GetMessage() string {
+func (m *Task) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Task) GetMessage() string {
 	if m != nil {
 		return m.Message
 	}
 	return ""
 }
 
-// The request message containing the user's name.
 type TaskRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -134,111 +131,68 @@ func (m *TaskRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TaskRequest proto.InternalMessageInfo
 
-// The response message containing the greetings
-type Task struct {
-	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+type TaskResponse struct {
+	Tasks                []*Task  `protobuf:"bytes,1,rep,name=tasks,proto3" json:"tasks,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Task) Reset()         { *m = Task{} }
-func (m *Task) String() string { return proto.CompactTextString(m) }
-func (*Task) ProtoMessage()    {}
-func (*Task) Descriptor() ([]byte, []int) {
+func (m *TaskResponse) Reset()         { *m = TaskResponse{} }
+func (m *TaskResponse) String() string { return proto.CompactTextString(m) }
+func (*TaskResponse) ProtoMessage()    {}
+func (*TaskResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_17b8c58d586b62f2, []int{3}
 }
 
-func (m *Task) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Task.Unmarshal(m, b)
+func (m *TaskResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TaskResponse.Unmarshal(m, b)
 }
-func (m *Task) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Task.Marshal(b, m, deterministic)
+func (m *TaskResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TaskResponse.Marshal(b, m, deterministic)
 }
-func (m *Task) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Task.Merge(m, src)
+func (m *TaskResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TaskResponse.Merge(m, src)
 }
-func (m *Task) XXX_Size() int {
-	return xxx_messageInfo_Task.Size(m)
+func (m *TaskResponse) XXX_Size() int {
+	return xxx_messageInfo_TaskResponse.Size(m)
 }
-func (m *Task) XXX_DiscardUnknown() {
-	xxx_messageInfo_Task.DiscardUnknown(m)
+func (m *TaskResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_TaskResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Task proto.InternalMessageInfo
+var xxx_messageInfo_TaskResponse proto.InternalMessageInfo
 
-func (m *Task) GetMessage() string {
+func (m *TaskResponse) GetTasks() []*Task {
 	if m != nil {
-		return m.Message
-	}
-	return ""
-}
-
-type TaskList struct {
-	Task                 []*Task  `protobuf:"bytes,1,rep,name=task,proto3" json:"task,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *TaskList) Reset()         { *m = TaskList{} }
-func (m *TaskList) String() string { return proto.CompactTextString(m) }
-func (*TaskList) ProtoMessage()    {}
-func (*TaskList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_17b8c58d586b62f2, []int{4}
-}
-
-func (m *TaskList) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TaskList.Unmarshal(m, b)
-}
-func (m *TaskList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TaskList.Marshal(b, m, deterministic)
-}
-func (m *TaskList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TaskList.Merge(m, src)
-}
-func (m *TaskList) XXX_Size() int {
-	return xxx_messageInfo_TaskList.Size(m)
-}
-func (m *TaskList) XXX_DiscardUnknown() {
-	xxx_messageInfo_TaskList.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TaskList proto.InternalMessageInfo
-
-func (m *TaskList) GetTask() []*Task {
-	if m != nil {
-		return m.Task
+		return m.Tasks
 	}
 	return nil
 }
 
 func init() {
-	proto.RegisterType((*HelloRequest)(nil), "helloworld.HelloRequest")
-	proto.RegisterType((*HelloReply)(nil), "helloworld.HelloReply")
-	proto.RegisterType((*TaskRequest)(nil), "helloworld.TaskRequest")
+	proto.RegisterType((*Empty)(nil), "helloworld.Empty")
 	proto.RegisterType((*Task)(nil), "helloworld.Task")
-	proto.RegisterType((*TaskList)(nil), "helloworld.TaskList")
+	proto.RegisterType((*TaskRequest)(nil), "helloworld.TaskRequest")
+	proto.RegisterType((*TaskResponse)(nil), "helloworld.TaskResponse")
 }
 
 func init() { proto.RegisterFile("helloworld.proto", fileDescriptor_17b8c58d586b62f2) }
 
 var fileDescriptor_17b8c58d586b62f2 = []byte{
-	// 216 bytes of a gzipped FileDescriptorProto
+	// 190 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xc8, 0x48, 0xcd, 0xc9,
 	0xc9, 0x2f, 0xcf, 0x2f, 0xca, 0x49, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x42, 0x88,
-	0x28, 0x29, 0x71, 0xf1, 0x78, 0x80, 0x78, 0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25, 0x42, 0x42,
-	0x5c, 0x2c, 0x79, 0x89, 0xb9, 0xa9, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x60, 0xb6, 0x92,
-	0x1a, 0x17, 0x17, 0x54, 0x4d, 0x41, 0x4e, 0xa5, 0x90, 0x04, 0x17, 0x7b, 0x6e, 0x6a, 0x71, 0x71,
-	0x62, 0x3a, 0x4c, 0x11, 0x8c, 0xab, 0xc4, 0xcb, 0xc5, 0x1d, 0x92, 0x58, 0x9c, 0x0d, 0x35, 0x4a,
-	0x49, 0x81, 0x8b, 0x05, 0xc4, 0xc5, 0xa3, 0xc1, 0x80, 0x8b, 0x03, 0xa4, 0xc2, 0x27, 0xb3, 0xb8,
-	0x44, 0x48, 0x85, 0x8b, 0xa5, 0x24, 0xb1, 0x38, 0x5b, 0x82, 0x51, 0x81, 0x59, 0x83, 0xdb, 0x48,
-	0x40, 0x0f, 0xc9, 0xd5, 0x60, 0x43, 0xc1, 0xb2, 0x46, 0x6d, 0x8c, 0x5c, 0xec, 0xee, 0x45, 0xa9,
-	0xa9, 0x25, 0xa9, 0x45, 0x42, 0x76, 0x5c, 0x1c, 0xc1, 0x89, 0x95, 0x60, 0x97, 0x09, 0x49, 0x20,
-	0xab, 0x47, 0xf6, 0x90, 0x94, 0x18, 0x16, 0x99, 0x82, 0x9c, 0x4a, 0x25, 0x06, 0x21, 0x6b, 0x2e,
-	0x0e, 0xf7, 0xd4, 0x12, 0x90, 0xe1, 0xc5, 0x42, 0xe2, 0x18, 0xf6, 0x41, 0xb5, 0x8b, 0xa0, 0x4b,
-	0x80, 0x1c, 0xab, 0xc4, 0x90, 0xc4, 0x06, 0x0e, 0x4a, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0x43, 0xdc, 0x22, 0xff, 0x5e, 0x01, 0x00, 0x00,
+	0x28, 0xb1, 0x73, 0xb1, 0xba, 0xe6, 0x16, 0x94, 0x54, 0x2a, 0x19, 0x70, 0xb1, 0x84, 0x24, 0x16,
+	0x67, 0x0b, 0xf1, 0x71, 0x31, 0x65, 0xa6, 0x48, 0x30, 0x2a, 0x30, 0x6a, 0x30, 0x07, 0x31, 0x65,
+	0xa6, 0x08, 0x49, 0x70, 0xb1, 0xe7, 0xa6, 0x16, 0x17, 0x27, 0xa6, 0xa7, 0x4a, 0x30, 0x29, 0x30,
+	0x6a, 0x70, 0x06, 0xc1, 0xb8, 0x4a, 0xbc, 0x5c, 0xdc, 0x20, 0x1d, 0x41, 0xa9, 0x85, 0xa5, 0xa9,
+	0xc5, 0x25, 0x4a, 0x66, 0x5c, 0x3c, 0x10, 0x6e, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0xaa, 0x90, 0x1a,
+	0x17, 0x6b, 0x49, 0x62, 0x71, 0x76, 0xb1, 0x04, 0xa3, 0x02, 0xb3, 0x06, 0xb7, 0x91, 0x80, 0x1e,
+	0x92, 0x3b, 0xc0, 0x0a, 0x21, 0xd2, 0x46, 0xae, 0x5c, 0xec, 0xee, 0x45, 0xa9, 0xa9, 0x25, 0xa9,
+	0x45, 0x42, 0x56, 0x5c, 0x9c, 0x3e, 0x99, 0xc5, 0x25, 0x20, 0xd9, 0x62, 0x21, 0x41, 0x64, 0x0d,
+	0x60, 0x37, 0x4a, 0x49, 0x60, 0x98, 0x01, 0xb5, 0x4c, 0x89, 0x21, 0x89, 0x0d, 0xec, 0x37, 0x63,
+	0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0x33, 0xd2, 0xcd, 0x15, 0xef, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -253,9 +207,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GreeterClient interface {
-	// Sends a greeting
-	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
-	GetTasks(ctx context.Context, in *TaskRequest, opts ...grpc.CallOption) (*TaskList, error)
+	ListTasks(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskResponse, error)
 }
 
 type greeterClient struct {
@@ -266,18 +218,9 @@ func NewGreeterClient(cc *grpc.ClientConn) GreeterClient {
 	return &greeterClient{cc}
 }
 
-func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
-	out := new(HelloReply)
-	err := c.cc.Invoke(ctx, "/helloworld.Greeter/SayHello", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *greeterClient) GetTasks(ctx context.Context, in *TaskRequest, opts ...grpc.CallOption) (*TaskList, error) {
-	out := new(TaskList)
-	err := c.cc.Invoke(ctx, "/helloworld.Greeter/GetTasks", in, out, opts...)
+func (c *greeterClient) ListTasks(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskResponse, error) {
+	out := new(TaskResponse)
+	err := c.cc.Invoke(ctx, "/helloworld.Greeter/ListTasks", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -286,47 +229,27 @@ func (c *greeterClient) GetTasks(ctx context.Context, in *TaskRequest, opts ...g
 
 // GreeterServer is the server API for Greeter service.
 type GreeterServer interface {
-	// Sends a greeting
-	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
-	GetTasks(context.Context, *TaskRequest) (*TaskList, error)
+	ListTasks(context.Context, *Empty) (*TaskResponse, error)
 }
 
 func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
 	s.RegisterService(&_Greeter_serviceDesc, srv)
 }
 
-func _Greeter_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloRequest)
+func _Greeter_ListTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GreeterServer).SayHello(ctx, in)
+		return srv.(GreeterServer).ListTasks(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/helloworld.Greeter/SayHello",
+		FullMethod: "/helloworld.Greeter/ListTasks",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).SayHello(ctx, req.(*HelloRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Greeter_GetTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TaskRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GreeterServer).GetTasks(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/helloworld.Greeter/GetTasks",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).GetTasks(ctx, req.(*TaskRequest))
+		return srv.(GreeterServer).ListTasks(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -336,12 +259,8 @@ var _Greeter_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*GreeterServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SayHello",
-			Handler:    _Greeter_SayHello_Handler,
-		},
-		{
-			MethodName: "GetTasks",
-			Handler:    _Greeter_GetTasks_Handler,
+			MethodName: "ListTasks",
+			Handler:    _Greeter_ListTasks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
