@@ -100,37 +100,6 @@ func (m *Task) GetMessage() string {
 	return ""
 }
 
-type TaskRequest struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *TaskRequest) Reset()         { *m = TaskRequest{} }
-func (m *TaskRequest) String() string { return proto.CompactTextString(m) }
-func (*TaskRequest) ProtoMessage()    {}
-func (*TaskRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_17b8c58d586b62f2, []int{2}
-}
-
-func (m *TaskRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TaskRequest.Unmarshal(m, b)
-}
-func (m *TaskRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TaskRequest.Marshal(b, m, deterministic)
-}
-func (m *TaskRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TaskRequest.Merge(m, src)
-}
-func (m *TaskRequest) XXX_Size() int {
-	return xxx_messageInfo_TaskRequest.Size(m)
-}
-func (m *TaskRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_TaskRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TaskRequest proto.InternalMessageInfo
-
 type TaskResponse struct {
 	Tasks                []*Task  `protobuf:"bytes,1,rep,name=tasks,proto3" json:"tasks,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -142,7 +111,7 @@ func (m *TaskResponse) Reset()         { *m = TaskResponse{} }
 func (m *TaskResponse) String() string { return proto.CompactTextString(m) }
 func (*TaskResponse) ProtoMessage()    {}
 func (*TaskResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_17b8c58d586b62f2, []int{3}
+	return fileDescriptor_17b8c58d586b62f2, []int{2}
 }
 
 func (m *TaskResponse) XXX_Unmarshal(b []byte) error {
@@ -170,29 +139,70 @@ func (m *TaskResponse) GetTasks() []*Task {
 	return nil
 }
 
+type NewTaskResponse struct {
+	Success              bool     `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *NewTaskResponse) Reset()         { *m = NewTaskResponse{} }
+func (m *NewTaskResponse) String() string { return proto.CompactTextString(m) }
+func (*NewTaskResponse) ProtoMessage()    {}
+func (*NewTaskResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_17b8c58d586b62f2, []int{3}
+}
+
+func (m *NewTaskResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_NewTaskResponse.Unmarshal(m, b)
+}
+func (m *NewTaskResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_NewTaskResponse.Marshal(b, m, deterministic)
+}
+func (m *NewTaskResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NewTaskResponse.Merge(m, src)
+}
+func (m *NewTaskResponse) XXX_Size() int {
+	return xxx_messageInfo_NewTaskResponse.Size(m)
+}
+func (m *NewTaskResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_NewTaskResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_NewTaskResponse proto.InternalMessageInfo
+
+func (m *NewTaskResponse) GetSuccess() bool {
+	if m != nil {
+		return m.Success
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*Empty)(nil), "helloworld.Empty")
 	proto.RegisterType((*Task)(nil), "helloworld.Task")
-	proto.RegisterType((*TaskRequest)(nil), "helloworld.TaskRequest")
 	proto.RegisterType((*TaskResponse)(nil), "helloworld.TaskResponse")
+	proto.RegisterType((*NewTaskResponse)(nil), "helloworld.NewTaskResponse")
 }
 
 func init() { proto.RegisterFile("helloworld.proto", fileDescriptor_17b8c58d586b62f2) }
 
 var fileDescriptor_17b8c58d586b62f2 = []byte{
-	// 190 bytes of a gzipped FileDescriptorProto
+	// 223 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xc8, 0x48, 0xcd, 0xc9,
 	0xc9, 0x2f, 0xcf, 0x2f, 0xca, 0x49, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x42, 0x88,
 	0x28, 0xb1, 0x73, 0xb1, 0xba, 0xe6, 0x16, 0x94, 0x54, 0x2a, 0x19, 0x70, 0xb1, 0x84, 0x24, 0x16,
 	0x67, 0x0b, 0xf1, 0x71, 0x31, 0x65, 0xa6, 0x48, 0x30, 0x2a, 0x30, 0x6a, 0x30, 0x07, 0x31, 0x65,
 	0xa6, 0x08, 0x49, 0x70, 0xb1, 0xe7, 0xa6, 0x16, 0x17, 0x27, 0xa6, 0xa7, 0x4a, 0x30, 0x29, 0x30,
-	0x6a, 0x70, 0x06, 0xc1, 0xb8, 0x4a, 0xbc, 0x5c, 0xdc, 0x20, 0x1d, 0x41, 0xa9, 0x85, 0xa5, 0xa9,
-	0xc5, 0x25, 0x4a, 0x66, 0x5c, 0x3c, 0x10, 0x6e, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0xaa, 0x90, 0x1a,
-	0x17, 0x6b, 0x49, 0x62, 0x71, 0x76, 0xb1, 0x04, 0xa3, 0x02, 0xb3, 0x06, 0xb7, 0x91, 0x80, 0x1e,
-	0x92, 0x3b, 0xc0, 0x0a, 0x21, 0xd2, 0x46, 0xae, 0x5c, 0xec, 0xee, 0x45, 0xa9, 0xa9, 0x25, 0xa9,
-	0x45, 0x42, 0x56, 0x5c, 0x9c, 0x3e, 0x99, 0xc5, 0x25, 0x20, 0xd9, 0x62, 0x21, 0x41, 0x64, 0x0d,
-	0x60, 0x37, 0x4a, 0x49, 0x60, 0x98, 0x01, 0xb5, 0x4c, 0x89, 0x21, 0x89, 0x0d, 0xec, 0x37, 0x63,
-	0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0x33, 0xd2, 0xcd, 0x15, 0xef, 0x00, 0x00, 0x00,
+	0x6a, 0x70, 0x06, 0xc1, 0xb8, 0x4a, 0x66, 0x5c, 0x3c, 0x20, 0x1d, 0x41, 0xa9, 0xc5, 0x05, 0xf9,
+	0x79, 0xc5, 0xa9, 0x42, 0x6a, 0x5c, 0xac, 0x25, 0x89, 0xc5, 0xd9, 0xc5, 0x12, 0x8c, 0x0a, 0xcc,
+	0x1a, 0xdc, 0x46, 0x02, 0x7a, 0x48, 0x16, 0x83, 0x15, 0x42, 0xa4, 0x95, 0xb4, 0xb9, 0xf8, 0xfd,
+	0x52, 0xcb, 0x51, 0xb4, 0x4a, 0x70, 0xb1, 0x17, 0x97, 0x26, 0x27, 0xa7, 0x16, 0x17, 0x83, 0x6d,
+	0xe6, 0x08, 0x82, 0x71, 0x8d, 0x1a, 0x19, 0xb9, 0xd8, 0xdd, 0x8b, 0x52, 0x53, 0x4b, 0x52, 0x8b,
+	0x84, 0xac, 0xb8, 0x38, 0x7d, 0x32, 0x8b, 0x4b, 0x40, 0x3a, 0x8b, 0x85, 0x04, 0x91, 0x8d, 0x07,
+	0x7b, 0x41, 0x4a, 0x02, 0xc3, 0x46, 0xa8, 0xf9, 0x4a, 0x0c, 0x42, 0x56, 0x5c, 0xec, 0x50, 0x4b,
+	0x85, 0x30, 0x1c, 0x26, 0x25, 0x8d, 0x2c, 0x82, 0xe6, 0x36, 0x25, 0x86, 0x24, 0x36, 0x70, 0xb0,
+	0x19, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x94, 0x7a, 0x19, 0x67, 0x4a, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -208,6 +218,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GreeterClient interface {
 	ListTasks(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskResponse, error)
+	NewTask(ctx context.Context, in *Task, opts ...grpc.CallOption) (*NewTaskResponse, error)
 }
 
 type greeterClient struct {
@@ -227,9 +238,19 @@ func (c *greeterClient) ListTasks(ctx context.Context, in *Empty, opts ...grpc.C
 	return out, nil
 }
 
+func (c *greeterClient) NewTask(ctx context.Context, in *Task, opts ...grpc.CallOption) (*NewTaskResponse, error) {
+	out := new(NewTaskResponse)
+	err := c.cc.Invoke(ctx, "/helloworld.Greeter/NewTask", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GreeterServer is the server API for Greeter service.
 type GreeterServer interface {
 	ListTasks(context.Context, *Empty) (*TaskResponse, error)
+	NewTask(context.Context, *Task) (*NewTaskResponse, error)
 }
 
 func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
@@ -254,6 +275,24 @@ func _Greeter_ListTasks_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Greeter_NewTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Task)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GreeterServer).NewTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld.Greeter/NewTask",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GreeterServer).NewTask(ctx, req.(*Task))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Greeter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "helloworld.Greeter",
 	HandlerType: (*GreeterServer)(nil),
@@ -261,6 +300,10 @@ var _Greeter_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTasks",
 			Handler:    _Greeter_ListTasks_Handler,
+		},
+		{
+			MethodName: "NewTask",
+			Handler:    _Greeter_NewTask_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

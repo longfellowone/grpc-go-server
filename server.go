@@ -25,6 +25,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	"google.golang.org/grpc"
 	pb "grpcgo/helloworld"
@@ -47,9 +48,28 @@ type server struct {
 //func (s *server) ListTasks(ctx context.Context, in *pb.TaskRequest) (*pb.TaskResponse, error) {
 func (s *server) ListTasks(ctx context.Context, in *pb.Empty) (*pb.TaskResponse, error) {
 
-	fmt.Println("ListTasks:", s.tempdata)
+	fmt.Println("New Request: ListTasks")
+	time.Sleep(2 * time.Second)
+	fmt.Println("ListTasks Response:", s.tempdata)
 
 	return &pb.TaskResponse{Tasks: s.tempdata}, nil
+}
+
+func (s *server) NewTask(ctx context.Context, in *pb.Task) (*pb.NewTaskResponse, error) {
+
+	fmt.Println("New Request: NewTask")
+	time.Sleep(2 * time.Second)
+
+	newdata := []*pb.Task{
+		{Message: "testing4", Id: 4},
+		//{Message: "testing5", Id: 5},
+		//{Message: "testing6", Id: 6},
+	}
+	s.tempdata = append(s.tempdata, newdata...)
+
+	fmt.Println("NewTask Response:", s.tempdata)
+
+	return &pb.NewTaskResponse{Success: true}, nil
 }
 
 func main() {
