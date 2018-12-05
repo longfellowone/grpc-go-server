@@ -10,7 +10,7 @@ service Greeter {
 message Empty {}
 
 message Task {
-  int64 id = 1;
+  string uuid = 1;
   string message = 2;
 }
 
