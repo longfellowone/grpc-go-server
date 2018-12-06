@@ -23,12 +23,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"google.golang.org/grpc"
+	pb "grpcgo/helloworld"
 	"log"
 	"net"
 	"time"
-
-	"google.golang.org/grpc"
-	pb "grpcgo/helloworld"
 )
 
 const (
@@ -49,7 +48,7 @@ type server struct {
 func (s *server) ListTasks(ctx context.Context, in *pb.Empty) (*pb.TaskResponse, error) {
 
 	fmt.Println("New Request: ListTasks")
-	time.Sleep(1 * time.Second)
+	//time.Sleep(1 * time.Second)
 	fmt.Println("ListTasks: Complete!")
 
 	return &pb.TaskResponse{Tasks: s.tempdata}, nil
@@ -59,7 +58,7 @@ func (s *server) NewTask(ctx context.Context, in *pb.Task) (*pb.NewTaskResponse,
 
 	fmt.Println("New Request: NewTask")
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 
 	newdata := []*pb.Task{
 		{Message: in.Message, Uuid: in.Uuid},
